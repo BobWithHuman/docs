@@ -86,7 +86,7 @@ footer .meta:empty {
 /* Search bar as a pill matching the GitHub link and theme toggle */
 @media (min-width: 50rem) {
   site-search button[data-open-modal] {
-    height: calc(2.25rem + 2px);
+    height: 2.25rem;
     padding-inline: 0.875rem 0.25rem;
     border-radius: 999px;
     background-color: var(--sl-color-bg);
