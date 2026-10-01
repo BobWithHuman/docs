@@ -3,14 +3,22 @@ import Default from '@astrojs/starlight/components/PageTitle.astro';
 import { Icon } from '@astrojs/starlight/components';
 
 const { entry, sidebar } = Astro.locals.starlightRoute;
-const group = sidebar.find(
-  (g) => g.type === 'group' && g.entries.some((e) => e.type === 'link' && e.isCurrent)
-);
+// Labels of the (possibly nested) sidebar groups containing the current page
+const findTrail = (entries) => {
+  for (const e of entries) {
+    if (e.type === 'link' && e.isCurrent) return [];
+    if (e.type === 'group') {
+      const trail = findTrail(e.entries);
+      if (trail) return [e.label, ...trail];
+    }
+  }
+};
+const trail = findTrail(sidebar) ?? [];
 ---
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href={import.meta.env.BASE_URL} aria-label="Home"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z" /></svg></a>
-  {group && <><Icon name="right-caret" /><span>{group.label}</span></>}
+  {trail.map((label) => <><Icon name="right-caret" /><span>{label}</span></>)}
   <Icon name="right-caret" />
   <span aria-current="page">{entry.data.title}</span>
 </nav>
