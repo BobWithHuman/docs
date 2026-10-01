@@ -10,6 +10,7 @@ export default defineConfig({
     starlight({
       title: 'WithHuman Docs',
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/BobWithHuman/docs' }],
+      components: { SocialIcons: './src/components/HeaderNav.astro' },
       sidebar: [
         { label: 'Introduction', items: [{ label: 'Overview', link: '/' }, { autogenerate: { directory: 'introduction' } }] },
         group('Getting Started', 'getting-started'),
