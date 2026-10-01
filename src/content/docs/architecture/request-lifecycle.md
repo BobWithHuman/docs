@@ -1,7 +1,7 @@
 ---
 title: Request Lifecycle
 sidebar:
-  order: 2
+  order: 3
 ---
 
 This page is a work in progress.
