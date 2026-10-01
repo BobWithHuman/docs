@@ -74,3 +74,36 @@ starlight-toc a[aria-current='true'] {
 :root[data-theme='light'] .site-title img {
   mix-blend-mode: multiply;
 }
+/* Prev/next links styled like the overview cards */
+.pagination-links a {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  box-shadow: none;
+  font-size: var(--sl-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+  transition: border-color 0.15s;
+}
+.pagination-links a:hover {
+  border-color: var(--sl-color-accent);
+}
+.pagination-links a svg {
+  color: var(--sl-color-accent);
+}
+.pagination-links .link-title {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: var(--sl-text-lg);
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+}
+footer .meta:empty {
+  display: none;
+}
+.pagination-links {
+  margin-top: 1.5rem;
+}
