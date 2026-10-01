@@ -83,3 +83,26 @@ footer .meta:empty {
 .social-icons::after {
   display: none;
 }
+/* Search bar as a pill matching the GitHub link and theme toggle */
+@media (min-width: 50rem) {
+  site-search button[data-open-modal] {
+    height: calc(2.25rem + 2px);
+    padding-inline: 0.875rem 0.25rem;
+    border-radius: 999px;
+    background-color: var(--sl-color-bg);
+    color: var(--sl-color-gray-3);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  site-search button[data-open-modal]:hover {
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-white);
+  }
+  site-search button[data-open-modal] > kbd {
+    height: 1.75rem;
+    align-items: center;
+    padding-inline: 0.625rem;
+    border-radius: 999px;
+    background-color: var(--sl-color-accent-low);
+    color: var(--sl-color-accent);
+  }
+}
