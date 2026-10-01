@@ -40,3 +40,15 @@ starlight-toc a[aria-current='true'] {
   font-size: var(--sl-text-sm);
   font-weight: 600;
 }
+/* Wider main column, narrower right ToC */
+:root {
+  --sl-content-width: 56rem;
+}
+@media (min-width: 72rem) {
+  .right-sidebar-container {
+    width: 15rem;
+  }
+  [data-has-sidebar][data-has-toc] .main-pane {
+    width: calc(100% - 15rem);
+  }
+}
