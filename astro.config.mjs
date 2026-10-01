@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'WithHuman Docs',
+      logo: { src: './src/assets/withhuman_logo.png' },
       customCss: ['./src/styles/theme.css'],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/BobWithHuman/docs' }],
       components: { SocialIcons: './src/components/HeaderNav.astro', PageTitle: './src/components/PageTitle.astro' },
