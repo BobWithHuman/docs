@@ -1,0 +1,182 @@
+---
+// Engine composition diagram for the spec overview: hook and gateway inputs, the module pipeline, and shared modules
+---
+
+<figure class="engine not-content" aria-label="엔진 구성도">
+  <div class="sources">
+    <div class="source">
+      <div class="box ext"><strong>Claude Code</strong><span>hooks</span></div>
+      <div class="wire"><code>HTTP 127.0.0.1</code><code>POST /v1/hooks</code></div>
+    </div>
+    <div class="source">
+      <div class="box ext"><strong>agentgateway</strong><span>MCP tools/call</span></div>
+      <div class="wire"><code>ext_authz gRPC</code></div>
+    </div>
+  </div>
+
+  <div class="daemon">
+    <div class="label">Engine Daemon</div>
+    <ol class="pipeline">
+      <li class="box">Collector</li>
+      <li class="box">Segment Analyzer</li>
+      <li class="box layer">
+        <strong>Causal Structure Layer</strong>
+        <ul>
+          <li>Call Parser</li>
+          <li>Token Index</li>
+          <li>Provenance Tracer</li>
+        </ul>
+      </li>
+      <li class="box">Decision Module</li>
+      <li class="box">PEP</li>
+    </ol>
+    <div class="label">Shared</div>
+    <div class="shared">
+      <div class="box">Jev Client<span>질문 묶음 · 캐시</span><em>→ Jev</em></div>
+      <div class="box">Provenance Log<span>기록</span><em>→ Redis</em></div>
+    </div>
+  </div>
+</figure>
+
+<style>
+  .engine {
+    margin: 1.5rem 0 0;
+    font-size: var(--sl-text-sm);
+    line-height: 1.4;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.125rem;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 0.625rem;
+    background: var(--sl-color-bg);
+    color: var(--sl-color-white);
+    font-weight: 600;
+    text-align: center;
+  }
+  .box span {
+    font-weight: 400;
+    color: var(--sl-color-gray-3);
+  }
+  .box em {
+    margin-top: 0.375rem;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--sl-color-accent);
+  }
+  .ext {
+    background: var(--sl-color-bg-sidebar);
+  }
+  .sources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .source {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .source .box {
+    width: min(100%, 15rem);
+  }
+  .wire {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 0 1.25rem;
+  }
+  .wire::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 50%;
+    border-inline-start: 1px dashed var(--sl-color-gray-4);
+  }
+  .wire::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 0.3rem);
+    border: 0.3rem solid transparent;
+    border-top-color: var(--sl-color-gray-4);
+    border-bottom: none;
+  }
+  .wire code {
+    position: relative;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    background: var(--sl-color-bg);
+    border: 1px solid var(--sl-color-hairline-light);
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-2);
+  }
+  .daemon {
+    padding: 1rem 1.25rem 1.25rem;
+    border: 1px solid var(--sl-color-accent);
+    border-radius: 1rem;
+    background: var(--sl-color-accent-low);
+  }
+  .label {
+    margin-bottom: 0.625rem;
+    font-size: var(--sl-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sl-color-accent-high);
+  }
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+  }
+  .pipeline > li {
+    position: relative;
+    margin: 0;
+  }
+  .pipeline > li + li::before {
+    content: '→';
+    position: absolute;
+    top: 50%;
+    left: -1.125rem;
+    transform: translateY(-50%);
+    color: var(--sl-color-gray-3);
+    font-weight: 400;
+  }
+  .layer ul {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .layer ul li {
+    margin: 0.25rem 0 0;
+    padding: 0.25rem 0.375rem;
+    border-radius: 0.375rem;
+    background: var(--sl-color-accent-low);
+    font-weight: 500;
+    font-size: var(--sl-text-xs);
+  }
+  .shared {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 50rem) {
+    .pipeline {
+      grid-template-columns: 1fr;
+    }
+    .pipeline > li + li::before {
+      content: '↓';
+      top: -1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+</style>

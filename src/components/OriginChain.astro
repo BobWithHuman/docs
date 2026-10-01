@@ -1,0 +1,102 @@
+---
+// A call's path to its origin: nodes joined by labeled edges, the last node marked as the origin
+interface Node {
+  label: string;
+  sub?: string;
+}
+interface Props {
+  nodes: Node[];
+  edges: string[];
+  origin: string;
+}
+const { nodes, edges, origin } = Astro.props;
+---
+
+<figure class="chain not-content">
+  <ol>
+    {nodes.map((n, i) => (
+      <>
+        {i > 0 && (
+          <li class="edge" aria-hidden="true">
+            <span>{edges[i - 1]}</span>
+          </li>
+        )}
+        <li class:list={['node', { origin: i === nodes.length - 1 }]}>
+          <strong>{n.label}</strong>
+          {n.sub && <span>{n.sub}</span>}
+          {i === nodes.length - 1 && <em>시작점 · {origin}</em>}
+        </li>
+      </>
+    ))}
+  </ol>
+</figure>
+
+<style>
+  .chain {
+    margin: 1.5rem 0 0;
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 0.75rem;
+    background: var(--sl-color-bg-sidebar);
+    overflow-x: auto;
+  }
+  ol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: max-content;
+  }
+  li {
+    margin: 0;
+  }
+  .node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 0.625rem;
+    background: var(--sl-color-bg);
+    font-size: var(--sl-text-sm);
+    line-height: 1.35;
+  }
+  .node strong {
+    color: var(--sl-color-white);
+  }
+  .node span {
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+  .node em {
+    margin-top: 0.25rem;
+    font-size: var(--sl-text-xs);
+    font-style: normal;
+    font-weight: 600;
+    color: var(--sl-color-accent);
+  }
+  .origin {
+    border-color: var(--sl-color-accent);
+    background: var(--sl-color-accent-low);
+  }
+  .edge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--sl-font-mono);
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-2);
+  }
+  /* Arrow: a thin shaft with a triangular head, cut from one block */
+  .edge::after {
+    content: '';
+    width: 4.5rem;
+    height: 0.5rem;
+    background: var(--sl-color-gray-3);
+    clip-path: polygon(0 45%, calc(100% - 0.4rem) 45%, calc(100% - 0.4rem) 0, 100% 50%, calc(100% - 0.4rem) 100%, calc(100% - 0.4rem) 55%, 0 55%);
+  }
+</style>

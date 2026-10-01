@@ -1,0 +1,131 @@
+---
+// Sequence diagram drawn as inline SVG so it follows the site theme
+interface Participant {
+  id: string;
+  label: string;
+  sub?: string;
+  accent?: boolean;
+}
+interface Message {
+  from: string;
+  to: string;
+  label: string;
+  sub?: string;
+  reply?: boolean;
+}
+interface Props {
+  participants: Participant[];
+  messages: Message[];
+  caption?: string;
+}
+const { participants, messages, caption } = Astro.props;
+
+const col = 200;
+const head = 64;
+const row = 58;
+const width = col * participants.length;
+const height = head + 28 + row * messages.length + 8;
+const x = (id: string) => col * participants.findIndex((p) => p.id === id) + col / 2;
+const uid = `seq-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<figure class="seq not-content">
+  <div class="scroll">
+    <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={caption ?? '시퀀스 다이어그램'}>
+      <defs>
+        <marker id={uid} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path class="head" d="M0 0 10 5 0 10z" />
+        </marker>
+      </defs>
+      {participants.map((p) => (
+        <g>
+          <line class="life" x1={x(p.id)} y1={head} x2={x(p.id)} y2={height - 8} />
+          <rect class:list={['actor', { accent: p.accent }]} x={x(p.id) - 82} y="4" width="164" height={head - 8} rx="10" />
+          <text class="actor-label" x={x(p.id)} y={p.sub ? 28 : 37}>{p.label}</text>
+          {p.sub && <text class="actor-sub" x={x(p.id)} y="46">{p.sub}</text>}
+        </g>
+      ))}
+      {messages.map((m, i) => {
+        const y = head + 28 + row * i + 30;
+        const x1 = x(m.from);
+        const x2 = x(m.to);
+        const dir = x2 > x1 ? 1 : -1;
+        const mid = (x1 + x2) / 2;
+        return (
+          <g>
+            <line class:list={['msg', { reply: m.reply }]} x1={x1 + dir * 2} y1={y} x2={x2 - dir * 4} y2={y} marker-end={`url(#${uid})`} />
+            <text class="msg-label" x={mid} y={m.sub ? y - 22 : y - 8}>{m.label}</text>
+            {m.sub && <text class="msg-sub" x={mid} y={y - 7}>{m.sub}</text>}
+          </g>
+        );
+      })}
+    </svg>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .seq {
+    margin: 1.5rem 0 0;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 0.75rem;
+    background: var(--sl-color-bg-sidebar);
+  }
+  .scroll {
+    overflow-x: auto;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    min-width: 36rem;
+    height: auto;
+    font-family: var(--sl-font);
+  }
+  .life {
+    stroke: var(--sl-color-gray-5);
+    stroke-dasharray: 4 4;
+  }
+  .actor {
+    fill: var(--sl-color-bg);
+    stroke: var(--sl-color-hairline-light);
+  }
+  .actor.accent {
+    fill: var(--sl-color-accent-low);
+    stroke: var(--sl-color-accent);
+  }
+  text {
+    text-anchor: middle;
+  }
+  .actor-label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--sl-color-white);
+  }
+  .actor-sub,
+  .msg-sub {
+    font-size: 11.5px;
+    fill: var(--sl-color-gray-3);
+  }
+  .msg {
+    stroke: var(--sl-color-gray-2);
+    stroke-width: 1.25;
+  }
+  .msg.reply {
+    stroke-dasharray: 5 4;
+  }
+  .head {
+    fill: var(--sl-color-gray-2);
+  }
+  .msg-label {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--sl-color-white);
+  }
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+    text-align: center;
+  }
+</style>

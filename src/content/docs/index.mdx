@@ -7,32 +7,32 @@ WithHuman is a runtime-agnostic causal security engine for AI agents. It analyze
 
 import FeatureCard from '../../components/FeatureCard.astro';
 
-엔진 명세 v0은 아래 아홉 섹션으로 나뉜다.
+엔진 명세 v0은 아래 아홉 개 섹션으로 구성됩니다.
 
 <FeatureCard href="/spec/overview/" icon="book" eyebrow="Section 0" title="Overview">
-  엔진이 무엇을 막는지, 어떤 모듈로 이뤄져 있고 이벤트가 어떤 순서로 지나가는지 본다.
+  엔진이 무엇을 막는지, 어떤 모듈로 구성되는지, 이벤트가 어떤 순서로 들어오는지 설명합니다.
 </FeatureCard>
 <FeatureCard href="/spec/common-model/glossary/" icon="database" eyebrow="Section 1" title="Common Model">
-  용어, 식별자와 순서, 노드와 간선, 값의 갈래, Provenance Record처럼 모든 모듈이 함께 쓰는 모델이다.
+  용어, 식별자와 순서, 노드와 간선, 값, Provenance Record처럼 모든 모듈이 함께 쓰는 모델입니다.
 </FeatureCard>
 <FeatureCard href="/spec/engine-daemon/" icon="server" eyebrow="Section 2" title="Engine Daemon">
-  훅과 agentgateway가 보내는 요청을 받는 엔진의 입구다.
+  훅과 agentgateway의 요청을 받는 엔진의 입구입니다.
 </FeatureCard>
 <FeatureCard href="/spec/shared/collector/" icon="layers" eyebrow="Section 3" title="Shared">
-  여러 모듈이 함께 쓰는 Collector, Jev Client, Provenance Log.
+  여러 모듈이 함께 쓰는 Collector, Jev Client, Provenance Log입니다.
 </FeatureCard>
 <FeatureCard href="/spec/segment-analyzer/" icon="filter" eyebrow="Section 4" title="Segment Analyzer">
-  에이전트가 읽은 문단에 시키는 문장, 주제, 숨긴 글을 표시한다.
+  에이전트가 읽은 문단마다 시키는 문장인지, 주제인지, 숨긴 글인지 표시합니다.
 </FeatureCard>
 <FeatureCard href="/spec/causal-layer/call-parser/" icon="nodes" eyebrow="Section 5" title="Causal Structure Layer">
-  호출을 요소로 나누고 값이 적힌 곳을 찾은 뒤, 호출에서 거슬러 올라가 시작점을 찾는다.
+  호출을 요소로 나누고 값의 출처를 찾은 뒤, 호출에서 거슬러 올라가 시작점을 찾습니다.
 </FeatureCard>
 <FeatureCard href="/spec/decision-module/" icon="check" eyebrow="Section 6" title="Decision Module">
-  Provenance Record만 보고 통과, 차단, 묻기를 정한다.
+  Provenance Record를 보고 통과, 차단, 묻기를 결정합니다.
 </FeatureCard>
 <FeatureCard href="/spec/pep/" icon="shield" eyebrow="Section 7" title="PEP">
-  판정을 PreToolUse 훅과 agentgateway ext_authz에서 집행한다.
+  판정을 PreToolUse 훅과 agentgateway의 ext_authz에서 집행합니다.
 </FeatureCard>
 <FeatureCard href="/spec/open-questions/" icon="help" eyebrow="Section 8" title="Open Questions">
-  아직 정하지 않았거나 확인하지 못한 것을 모았다.
+  아직 정하지 않았거나 확인하지 못한 내용을 모았습니다.
 </FeatureCard>
