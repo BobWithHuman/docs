@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'WithHuman Docs',
+      routeMiddleware: './src/routeData.ts',
       logo: { src: './src/assets/logo.png' },
       customCss: ['./src/styles/theme.css'],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/BobWithHuman/docs' }],
