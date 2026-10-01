@@ -3,7 +3,8 @@
   --sl-color-accent-low: #102a52;
   --sl-color-accent: #6cabfe;
   --sl-color-accent-high: #d6e8ff;
-  --sl-font: 'Inter', system-ui, sans-serif;
+  /* Pretendard for Hangul; its Latin glyphs are Inter-based so mixed text stays even */
+  --sl-font: 'Pretendard Variable', Pretendard, 'Inter', system-ui, sans-serif;
 }
 :root[data-theme='light'] {
   --sl-color-accent-low: #eaf3ff;
@@ -120,4 +121,54 @@ site-search dialog {
 }
 #starlight__search .pagefind-ui__search-input {
   border-radius: 999px;
+}
+/* Section headings sized for prose: Starlight's defaults (h2 ≈ 35px) dwarf Korean body text */
+:root {
+  --sl-text-h2: 1.5rem;
+  --sl-text-h3: 1.1875rem;
+  --sl-text-h4: 1.0625rem;
+}
+.main-pane {
+  /* Break Korean lines between words, not inside them (title, lead, and body) */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.sl-markdown-content h2:not(:where(.not-content *)) {
+  margin-top: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.sl-markdown-content h3:not(:where(.not-content *)) {
+  margin-top: 2rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+/* Tables: full width with a framed header, matching the card borders */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 0.75rem;
+  font-size: var(--sl-text-sm);
+}
+@media (min-width: 50rem) {
+  .sl-markdown-content table:not(:where(.not-content *)) {
+    display: table;
+    width: 100%;
+  }
+}
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+  padding: 0.625rem 1rem;
+  border-bottom-color: var(--sl-color-hairline-light);
+}
+.sl-markdown-content th:not(:where(.not-content *)) {
+  background: var(--sl-color-bg-sidebar);
+  font-weight: 600;
+}
+.sl-markdown-content th:first-child:not(:where(.not-content *)) {
+  border-start-start-radius: 0.75rem;
+}
+.sl-markdown-content th:last-child:not(:where(.not-content *)) {
+  border-start-end-radius: 0.75rem;
+}
+.sl-markdown-content tr:last-child td:not(:where(.not-content *)) {
+  border-bottom: none;
 }
