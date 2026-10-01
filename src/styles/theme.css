@@ -1,0 +1,42 @@
+/* Warm light theme from docs-main.png */
+:root {
+  --sl-color-accent-low: #3b2a1c;
+  --sl-color-accent: #c08a5b;
+  --sl-color-accent-high: #f3e3cf;
+  --sl-font: 'Inter', system-ui, sans-serif;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #f7eee3;
+  --sl-color-accent: #8a5528;
+  --sl-color-accent-high: #3b2412;
+  --sl-color-white: #1a1714;
+  --sl-color-bg-sidebar: #faf9f7;
+  --sl-color-hairline-light: #e8e4df;
+  --sl-color-hairline: #ebe7e2;
+}
+h1 {
+  font-weight: 800 !important;
+}
+/* Sidebar: group labels bold, current item highlighted in warm tone */
+.sidebar-content a[aria-current='page'] {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+  font-weight: 500;
+}
+/* ToC: current item gets a left accent bar */
+starlight-toc a[aria-current='true'] {
+  background: var(--sl-color-accent-low);
+  box-shadow: inset 2px 0 var(--sl-color-accent);
+  color: var(--sl-color-accent-high);
+}
+.site-title {
+  color: var(--sl-color-white);
+  font-size: var(--sl-text-lg);
+}
+.content-panel + .content-panel {
+  border-top: none;
+}
+.sidebar-content .large {
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+}
