@@ -1,0 +1,95 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+
+const options = [
+  { value: 'light', icon: 'sun', label: 'Light' },
+  { value: 'dark', icon: 'moon', label: 'Dark' },
+  { value: 'auto', icon: 'laptop', label: 'Auto' },
+] as const;
+---
+
+<theme-switch role="group" aria-label="Theme">
+  {
+    options.map((o) => (
+      <button type="button" data-theme-value={o.value} aria-label={o.label} title={o.label}>
+        <Icon name={o.icon} size="1rem" />
+      </button>
+    ))
+  }
+</theme-switch>
+
+{/* Inlined so the active button is right on first paint */}
+<script is:inline>
+  document.querySelectorAll('theme-switch').forEach((s) => {
+    const t = localStorage.getItem('starlight-theme') || 'auto';
+    s.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeValue === t)));
+  });
+</script>
+
+<script>
+  type Theme = 'auto' | 'dark' | 'light';
+  const key = 'starlight-theme';
+  const system = (): 'light' | 'dark' =>
+    matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const stored = (): Theme => (localStorage.getItem(key) as Theme) || 'auto';
+
+  function apply(theme: Theme) {
+    document.documentElement.dataset.theme = theme === 'auto' ? system() : theme;
+    localStorage.setItem(key, theme === 'auto' ? '' : theme);
+    document.querySelectorAll('theme-switch button').forEach((b) => {
+      b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.themeValue === theme));
+    });
+  }
+
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+    if (stored() === 'auto') apply('auto');
+  });
+
+  customElements.define(
+    'theme-switch',
+    class extends HTMLElement {
+      connectedCallback() {
+        this.querySelectorAll('button').forEach((b) =>
+          b.addEventListener('click', () => apply(b.dataset.themeValue as Theme))
+        );
+      }
+    }
+  );
+</script>
+
+<style>
+  theme-switch {
+    align-self: center;
+    height: fit-content;
+    display: inline-flex;
+    gap: 0.125rem;
+    padding: 0.1875rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    background: var(--sl-color-bg);
+  }
+  button {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--sl-color-gray-3);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  button:hover {
+    color: var(--sl-color-white);
+  }
+  button[aria-pressed='true'] {
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent);
+  }
+  button:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 1px;
+  }
+</style>
