@@ -1,14 +1,14 @@
-/* Warm light theme from docs-main.png */
+/* Light-blue accent sampled from the WithHuman logo (#106ef8) */
 :root {
-  --sl-color-accent-low: #3b2a1c;
-  --sl-color-accent: #c08a5b;
-  --sl-color-accent-high: #f3e3cf;
+  --sl-color-accent-low: #102a52;
+  --sl-color-accent: #6cabfe;
+  --sl-color-accent-high: #d6e8ff;
   --sl-font: 'Inter', system-ui, sans-serif;
 }
 :root[data-theme='light'] {
-  --sl-color-accent-low: #f7eee3;
-  --sl-color-accent: #8a5528;
-  --sl-color-accent-high: #3b2412;
+  --sl-color-accent-low: #eaf3ff;
+  --sl-color-accent: #1a6fe8;
+  --sl-color-accent-high: #0f3d8a;
   --sl-color-white: #1a1714;
   --sl-color-bg-sidebar: #faf9f7;
   --sl-color-hairline-light: #e8e4df;
