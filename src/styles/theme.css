@@ -79,3 +79,7 @@ footer .meta:empty {
 .pagination-links {
   margin-top: 1.5rem;
 }
+/* GitHub and theme toggle are both pills; the divider between them is noise */
+.social-icons::after {
+  display: none;
+}

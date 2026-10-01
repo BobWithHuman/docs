@@ -11,7 +11,7 @@ const links = [
 
 <nav class="header-nav">
   {links.map((l) => <a href={l.href}>{l.label}</a>)}
-  <a href="https://github.com/BobWithHuman/docs"><Icon name="github" size="1.25rem" />GitHub</a>
+  <a class="github" href="https://github.com/BobWithHuman/docs"><Icon name="github" size="1rem" />GitHub</a>
 </nav>
 
 <style>
@@ -31,5 +31,17 @@ const links = [
   }
   a:hover {
     color: var(--sl-color-accent);
+  }
+  /* Pill matching the theme toggle next to it */
+  .github {
+    height: calc(2.25rem + 2px);
+    padding-inline: 0.75rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    background: var(--sl-color-bg);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .github:hover {
+    border-color: var(--sl-color-accent);
   }
 </style>
