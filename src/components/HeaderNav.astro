@@ -1,47 +1,28 @@
 ---
 import { Icon } from '@astrojs/starlight/components';
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const links = [
-  { label: 'Docs', href: `${base}/` },
-  { label: 'Integrations', href: `${base}/integrations/agent/openclaw/` },
-  { label: 'Security', href: `${base}/security/threat-model/` },
-];
 ---
 
-<nav class="header-nav">
-  {links.map((l) => <a href={l.href}>{l.label}</a>)}
-  <a class="github" href="https://github.com/BobWithHuman/docs"><Icon name="github" size="1rem" />GitHub</a>
-</nav>
+<a class="github" href="https://github.com/BobWithHuman/docs"><Icon name="github" size="1rem" />GitHub</a>
 
 <style>
-  .header-nav {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-  }
-  a {
+  /* Pill matching the theme toggle next to it */
+  .github {
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    color: var(--sl-color-white);
-    font-size: var(--sl-text-sm);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  a:hover {
-    color: var(--sl-color-accent);
-  }
-  /* Pill matching the theme toggle next to it */
-  .github {
     height: calc(2.25rem + 2px);
     padding-inline: 0.75rem;
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 999px;
     background: var(--sl-color-bg);
+    color: var(--sl-color-white);
+    font-size: var(--sl-text-sm);
+    font-weight: 500;
+    text-decoration: none;
     transition: border-color 0.15s, color 0.15s;
   }
   .github:hover {
     border-color: var(--sl-color-accent);
+    color: var(--sl-color-accent);
   }
 </style>

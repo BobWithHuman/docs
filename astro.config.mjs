@@ -13,7 +13,7 @@ export default defineConfig({
       logo: { src: './src/assets/logo.png' },
       customCss: ['./src/styles/theme.css'],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/BobWithHuman/docs' }],
-      components: { SocialIcons: './src/components/HeaderNav.astro', PageTitle: './src/components/PageTitle.astro', Head: './src/components/Head.astro', ThemeSelect: './src/components/ThemeSelect.astro' },
+      components: { Header: './src/components/Header.astro', SocialIcons: './src/components/HeaderNav.astro', PageTitle: './src/components/PageTitle.astro', Head: './src/components/Head.astro', ThemeSelect: './src/components/ThemeSelect.astro' },
       sidebar: [
         group('Introduction', 'introduction'),
         group('Getting Started', 'getting-started'),
