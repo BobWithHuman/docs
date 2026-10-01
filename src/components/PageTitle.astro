@@ -9,7 +9,7 @@ const group = sidebar.find(
 ---
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-  <a href={import.meta.env.BASE_URL} aria-label="Home"><Icon name="seti:home" /></a>
+  <a href={import.meta.env.BASE_URL} aria-label="Home"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z" /></svg></a>
   {group && <><Icon name="right-caret" /><span>{group.label}</span></>}
   <Icon name="right-caret" />
   <span aria-current="page">{entry.data.title}</span>
