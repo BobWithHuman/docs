@@ -6,21 +6,33 @@ description: Welcome to WithHuman Docs. This is your starting point for understa
 WithHuman is a runtime-agnostic causal security engine for AI agents. It analyzes why an agent takes an action, understands the context and intent, and makes a security decision in real time. WithHuman can be integrated with popular agent runtimes such as OpenClaw, Hermes, Muse, Claude Code, and AgentGateway, and is designed to be runtime-agnostic.
 
 import FeatureCard from '../../components/FeatureCard.astro';
-import CallToAction from '../../components/CallToAction.astro';
 
-<FeatureCard href="/introduction/what-is-withhuman/" icon="book" eyebrow="Getting to know WithHuman" title="What is WithHuman?">
-  Learn what WithHuman is, the problem it solves, and how it helps secure AI agents through causal analysis and runtime enforcement.
-</FeatureCard>
-<FeatureCard href="/introduction/why-withhuman/" icon="chart" eyebrow="Key benefits" title="Why WithHuman?">
-  Explore the key benefits, use cases, and what makes WithHuman different from traditional security approaches.
-</FeatureCard>
-<FeatureCard href="/architecture/overview/" icon="nodes" eyebrow="How it works" title="How it works">
-  Get a high-level overview of WithHuman's architecture, from analyzing tool calls to making security decisions.
-</FeatureCard>
-<FeatureCard href="/introduction/supported-agent-runtimes/" icon="database" eyebrow="Integration options" title="Supported runtimes">
-  See which agent runtimes are supported, including OpenClaw, Hermes, Muse, Claude Code, and AgentGateway.
-</FeatureCard>
+엔진 명세 v0은 아래 아홉 섹션으로 나뉜다.
 
-<CallToAction href="/getting-started/quick-start/" title="Set up WithHuman in minutes" button="Go to Quick Start">
-  Follow the quick start guide to install WithHuman and run your first protected agent.
-</CallToAction>
+<FeatureCard href="/spec/overview/" icon="book" eyebrow="Section 0" title="Overview">
+  엔진이 무엇을 막는지, 어떤 모듈로 이뤄져 있고 이벤트가 어떤 순서로 지나가는지 본다.
+</FeatureCard>
+<FeatureCard href="/spec/common-model/glossary/" icon="database" eyebrow="Section 1" title="Common Model">
+  용어, 식별자와 순서, 노드와 간선, 값의 갈래, Provenance Record처럼 모든 모듈이 함께 쓰는 모델이다.
+</FeatureCard>
+<FeatureCard href="/spec/engine-daemon/" icon="server" eyebrow="Section 2" title="Engine Daemon">
+  훅과 agentgateway가 보내는 요청을 받는 엔진의 입구다.
+</FeatureCard>
+<FeatureCard href="/spec/shared/collector/" icon="layers" eyebrow="Section 3" title="Shared">
+  여러 모듈이 함께 쓰는 Collector, Jev Client, Provenance Log.
+</FeatureCard>
+<FeatureCard href="/spec/segment-analyzer/" icon="filter" eyebrow="Section 4" title="Segment Analyzer">
+  에이전트가 읽은 문단에 시키는 문장, 주제, 숨긴 글을 표시한다.
+</FeatureCard>
+<FeatureCard href="/spec/causal-layer/call-parser/" icon="nodes" eyebrow="Section 5" title="Causal Structure Layer">
+  호출을 요소로 나누고 값이 적힌 곳을 찾은 뒤, 호출에서 거슬러 올라가 시작점을 찾는다.
+</FeatureCard>
+<FeatureCard href="/spec/decision-module/" icon="check" eyebrow="Section 6" title="Decision Module">
+  Provenance Record만 보고 통과, 차단, 묻기를 정한다.
+</FeatureCard>
+<FeatureCard href="/spec/pep/" icon="shield" eyebrow="Section 7" title="PEP">
+  판정을 PreToolUse 훅과 agentgateway ext_authz에서 집행한다.
+</FeatureCard>
+<FeatureCard href="/spec/open-questions/" icon="help" eyebrow="Section 8" title="Open Questions">
+  아직 정하지 않았거나 확인하지 못한 것을 모았다.
+</FeatureCard>
