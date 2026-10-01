@@ -35,6 +35,7 @@ starlight-toc a[aria-current='true'] {
 }
 .content-panel + .content-panel {
   border-top: none;
+  padding-top: 0;
 }
 .sidebar-content .large {
   font-size: var(--sl-text-sm);
@@ -49,6 +50,15 @@ starlight-toc a[aria-current='true'] {
     width: 15rem;
   }
   [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: auto;
     width: calc(100% - 15rem);
+  }
+  /* .right-sidebar is position: fixed, so width: 100% means the viewport */
+  .right-sidebar {
+    width: 15rem;
+  }
+  .right-sidebar-panel .sl-container {
+    width: auto;
+    max-width: none;
   }
 }
