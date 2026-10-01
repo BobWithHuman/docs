@@ -23,7 +23,6 @@ export default defineConfig({
           items: [
             group('Agent', 'integrations/agent'),
             group('AI Gateway', 'integrations/ai-gateway'),
-            'integrations/custom-runtime',
           ],
         },
         group('Security', 'security'),
