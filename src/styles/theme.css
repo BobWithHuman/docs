@@ -23,12 +23,6 @@ h1 {
   color: var(--sl-color-accent-high);
   font-weight: 500;
 }
-/* ToC: current item gets a left accent bar */
-starlight-toc a[aria-current='true'] {
-  background: var(--sl-color-accent-low);
-  box-shadow: inset 2px 0 var(--sl-color-accent);
-  color: var(--sl-color-accent-high);
-}
 .site-title {
   color: var(--sl-color-white);
   font-size: var(--sl-text-lg);
@@ -41,26 +35,9 @@ starlight-toc a[aria-current='true'] {
   font-size: var(--sl-text-sm);
   font-weight: 600;
 }
-/* Wider main column, narrower right ToC */
+/* Wider main column */
 :root {
   --sl-content-width: 56rem;
-}
-@media (min-width: 72rem) {
-  .right-sidebar-container {
-    width: 15rem;
-  }
-  [data-has-sidebar][data-has-toc] .main-pane {
-    --sl-content-margin-inline: auto;
-    width: calc(100% - 15rem);
-  }
-  /* .right-sidebar is position: fixed, so width: 100% means the viewport */
-  .right-sidebar {
-    width: 15rem;
-  }
-  .right-sidebar-panel .sl-container {
-    width: auto;
-    max-width: none;
-  }
 }
 .site-title img {
   /* logo.png is square with the wordmark (2.25:1) slightly below center; crop to it */
