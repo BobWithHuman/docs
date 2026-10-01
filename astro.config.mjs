@@ -18,7 +18,14 @@ export default defineConfig({
         group('Getting Started', 'getting-started'),
         group('Concepts', 'concepts'),
         group('Architecture', 'architecture'),
-        group('Integrations', 'integrations'),
+        {
+          label: 'Integrations',
+          items: [
+            group('Agent', 'integrations/agent'),
+            group('AI Gateway', 'integrations/ai-gateway'),
+            'integrations/custom-runtime',
+          ],
+        },
         group('Security', 'security'),
         group('Guides', 'guides'),
         group('Reference', 'reference'),
