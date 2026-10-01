@@ -12,7 +12,7 @@ export default defineConfig({
       logo: { src: './src/assets/withhuman_logo.png' },
       customCss: ['./src/styles/theme.css'],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/BobWithHuman/docs' }],
-      components: { SocialIcons: './src/components/HeaderNav.astro', PageTitle: './src/components/PageTitle.astro' },
+      components: { SocialIcons: './src/components/HeaderNav.astro', PageTitle: './src/components/PageTitle.astro', Head: './src/components/Head.astro' },
       sidebar: [
         { label: 'Introduction', items: [{ label: 'Overview', link: '/' }, { autogenerate: { directory: 'introduction' } }] },
         group('Getting Started', 'getting-started'),

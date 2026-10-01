@@ -1,0 +1,13 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import { getImage } from 'astro:assets';
+import logo from '../assets/withhuman_logo.png';
+
+const favicon = await getImage({ src: logo, width: 64, height: 64, format: 'png' });
+// Replace Starlight's default favicon.svg link with the logo
+const route = Astro.locals.starlightRoute;
+route.head = route.head.filter((t) => !(t.tag === 'link' && t.attrs?.rel === 'shortcut icon'));
+---
+
+<Default />
+<link rel="icon" type="image/png" href={favicon.src} />
