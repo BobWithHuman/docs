@@ -1,7 +1,7 @@
 ---
 import Default from '@astrojs/starlight/components/Head.astro';
 import { getImage } from 'astro:assets';
-import logo from '../assets/withhuman_logo.png';
+import logo from '../assets/logo.png';
 
 const favicon = await getImage({ src: logo, width: 64, height: 64, format: 'png' });
 // Replace Starlight's default favicon.svg link with the logo

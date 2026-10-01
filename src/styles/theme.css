@@ -63,16 +63,11 @@ starlight-toc a[aria-current='true'] {
   }
 }
 .site-title img {
-  /* Source PNG has wide white padding; crop it so the wordmark stays legible */
-  width: 4rem;
-  height: 2.5rem;
+  /* logo.png is square with the wordmark (2.25:1) slightly below center; crop to it */
+  width: 5rem;
+  height: 2.25rem;
   object-fit: cover;
-  transform: scale(1.25);
-  border-radius: 0.375rem;
-}
-/* Drop the logo's white background onto the header color */
-:root[data-theme='light'] .site-title img {
-  mix-blend-mode: multiply;
+  object-position: 50% 57%;
 }
 /* Prev/next links styled like the overview cards */
 .pagination-links a {
