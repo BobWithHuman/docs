@@ -4,3 +4,23 @@ description: Welcome to WithHuman Docs. This is your starting point for understa
 ---
 
 WithHuman is a runtime-agnostic causal security engine for AI agents. It analyzes why an agent takes an action, understands the context and intent, and makes a security decision in real time. WithHuman can be integrated with popular agent runtimes such as OpenClaw, Hermes, Muse, Claude Code, and AgentGateway, and is designed to be runtime-agnostic.
+
+import FeatureCard from '../../components/FeatureCard.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+<FeatureCard href="/introduction/what-is-withhuman/" icon="book" eyebrow="Getting to know WithHuman" title="What is WithHuman?">
+  Learn what WithHuman is, the problem it solves, and how it helps secure AI agents through causal analysis and runtime enforcement.
+</FeatureCard>
+<FeatureCard href="/introduction/why-withhuman/" icon="chart" eyebrow="Key benefits" title="Why WithHuman?">
+  Explore the key benefits, use cases, and what makes WithHuman different from traditional security approaches.
+</FeatureCard>
+<FeatureCard href="/architecture/overview/" icon="nodes" eyebrow="How it works" title="How it works">
+  Get a high-level overview of WithHuman's architecture, from analyzing tool calls to making security decisions.
+</FeatureCard>
+<FeatureCard href="/introduction/supported-agent-runtimes/" icon="database" eyebrow="Integration options" title="Supported runtimes">
+  See which agent runtimes are supported, including OpenClaw, Hermes, Muse, Claude Code, and AgentGateway.
+</FeatureCard>
+
+<CallToAction href="/getting-started/quick-start/" title="Set up WithHuman in minutes" button="Go to Quick Start">
+  Follow the quick start guide to install WithHuman and run your first protected agent.
+</CallToAction>
